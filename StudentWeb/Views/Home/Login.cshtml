@@ -1,0 +1,95 @@
+﻿
+@{
+    ViewData["Title"] = "Login";
+   
+}
+
+
+<!DOCTYPE html>
+<html>
+<head>
+   
+   
+    <style>
+        body {
+        }
+
+        .mb_26 {
+            margin-bottom: 26px;
+        }
+
+       
+
+       
+
+        body {
+            background-color: transparent !important;
+        }
+
+       
+
+        .bg {
+            background: rgba(180, 180, 180, 0.5);
+        }
+
+        label {
+            color: #fff;
+            margin-top: 0.1rem;
+        }
+    </style>
+</head>
+<body>
+    <!--=====-Login Section Start-======-->
+    <div class="container">
+        <div class="row">
+           
+            <div class="col-md-12">
+                <div class="form-container bg" style="height: auto !important; margin-top: 250px;margin-left: 400px; width: 400px;">
+                    <form method="post" id="loginid">
+                        <div id="email-box">
+                            
+                            <div class="form-group" style="margin-bottom: 0rem !important">
+                                <label class="form-label" for="userId">User Id </label>
+                                <input type="text" class="inp form-control" id="userId" autocomplete="off" maxlength="6" minlength="6">
+                               
+                            </div>
+                            <div class="form-group" style="margin-bottom: 0rem !important">
+                                <label class="form-label" for="password">Password</label>
+                                <input type="password" class="inp form-control" id="password" maxlength="10">
+                                
+                            </div>
+                          
+                            <br />
+                            <span class="text-danger">
+                                <span id="failMsg" class=""></span>
+                            </span>
+                            <div class="form-link" style="align-content:center">
+                                
+                                <button type="button" onclick="bill.login()" class="login_btn">Login</button>
+
+                            </div>
+                            <br />
+                        </div>
+                    </form>
+                </div>
+
+               
+            </div>
+        </div>
+    </div>
+
+   
+
+</body>
+</html>
+@section Scripts{
+    <script src="~/app/app.js" asp-append-version="true"></script>
+  
+    <script src="~/lib/jquery/jquery.js"></script>
+    <script src="~/app/billcontroller.js" asp-append-version="true"></script>
+    <script src="~/app/billvalidation.js" asp-append-version="true"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+
+    <script src="~/app/services/httpservice.js" asp-append-version="true"></script>
+    
+}

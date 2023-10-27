@@ -1,0 +1,284 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+<style>
+    .button-width {
+        width: 100px; /* Replace with your desired width */
+    }
+</style>
+
+<div class="container-fluid">
+    <!-- ============================================================== -->
+    <!-- Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <div class="row page-titles">
+        <div class="col-md-5 col-8 align-self-center">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
+                <li class="breadcrumb-item active">Billing</li>
+            </ol>
+        </div>
+
+    </div>
+
+    <div id="exTab1" class=".container">
+        
+        <form id="frmBillEntry" style="display:none;">
+            <div class="my_card">
+                <div class="form-body p-20">
+                    <div class="row p-t-20">
+
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>ID<span style="color:red">*</span></label>
+                                <input type="text" class="form-control ID" id="ID" name="ID" placeholder="ID"  required maxlength="10"  autocomplete="off" />
+
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Item_Code<span style="color:red">*</span></label>
+                                <input type="text" class="form-control Item_Code" id="Item_Code" name="Item_Code" required placeholder="Item_Code" maxlength="10" autocomplete="off">
+
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Item_Name<span style="color:red">*</span></label>
+                                <input type="text" class="form-control Item_Name" id="Item_Name" name="Item_Name" required placeholder="Item_Name" maxlength="100" autocomplete="off">
+
+                            </div>
+                        </div>
+                        @* <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Item_Code <span style="color:red">*</span></label>
+                                <select class="select2 State" style="width:100%" name="Itemname" required id="Itemname">
+                                    <option value="0">-- Select item--</option>
+                                </select>
+                                <label id="Itemname-error" class="error error-msg hide" for="Itemname"></label>
+                            </div>
+                        </div> *@
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Quantity<span style="color:red">*</span></label>
+                                <input type="text" class="form-control Quantity" id="Quantity" name="Quantity" required placeholder="Quantity" maxlength="10" readonlyautocomplete="off">
+
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Price<span style="color:red">*</span></label>
+                                <input type="text" class="form-control Price" id="Price" name="Price" required placeholder="Price" maxlength="10" readonlyautocomplete="off">
+
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Created By <span style="color:red">*</span></label>
+                                <input type="text" class="form-control Createdby" id="Createdby" name="Createdon" placeholder="Created By" maxlength="6" autocomplete="off" required>
+
+                            </div>
+                        </div>
+                       
+                        
+                        
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Modified By <span style="color:red">*</span></label>
+                                <input type="text" class="form-control ModifiedBy" id="ModifiedBy" name="ModifiedBy" placeholder="Modified By" maxlength="6" autocomplete="off" required>
+
+                            </div>
+                        </div>
+
+
+                        
+                        
+
+                       
+                      
+                    </div>
+                   
+                   
+                </div>
+            </div>
+            <div class="row  col-md-6">
+                <div class="col-md-4">
+                    <button type="submit" class="btn-wraper btn-red btn-outline" onclick="bill.Submit();">Submit</button>
+                    
+                </div>
+                <div class="col-md-4">
+                    <button type="button" class="btn-wraper btn-red btn-outline" onclick="bill.ShowPage(4);">Back</button>
+
+                </div>
+            </div>
+        </form>
+        <form id="frmBillEntryUpdate" style="display:none;">
+            <div class="my_card">
+                <div class="form-body p-20">
+                    <div class="row p-t-20">
+
+
+                        
+                                @* <label>ID<span style="color:red">*</span></label> *@
+                                <input type="hidden" class="form-control ID" id="ID1" name="ID1" placeholder="ID" required maxlength="10" autocomplete="off" />
+
+                            
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Item_Name <span style="color:red">*</span></label>
+                                <select class="select2 State" style="width:100%" name="Itemname1" required id="Itemname1" onchange="bill.itemdtls();">
+                                    <option value="0">-- Select item--</option>
+                                </select>
+                                <label id="Itemname1-error" class="error error-msg hide" for="Itemname1"></label>
+                            </div>
+                        </div>
+
+                        @* <div class="col-md-4">
+                            <div class="form-group">
+                                <label>ItemRate <span style="color:red">*</span></label>
+                                <input type="text" class="form-control rate1" id="rate1" name="rate1" required placeholder="rate" maxlength="10" readonlyautocomplete="off">
+
+                            </div>
+                        </div> *@
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Quantity<span style="color:red">*</span></label>
+                                <input type="text" class="form-control Quantity" id="Quantity1" name="Quantity1" required placeholder="Quantity" maxlength="10" readonlyautocomplete="off">
+
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Price<span style="color:red">*</span></label>
+                                <input type="text" class="form-control Price" id="Price1" name="Price1" required placeholder="Price" maxlength="10" readonlyautocomplete="off">
+
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Item_Code<span style="color:red">*</span></label>
+                                <input type="text" class="form-control Item_Code" id="Item_Code1" name="Item_Code1" required placeholder="Item_Code" maxlength="10" autocomplete="off">
+
+                            </div>
+                        </div>
+                        
+
+                       
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Created By <span style="color:red">*</span></label>
+                                <input type="text" class="form-control Createdby" id="Createdby1" name="Createdon1" placeholder="Created By" maxlength="6" autocomplete="off" required>
+
+                            </div>
+                        </div>
+
+
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Modified By <span style="color:red">*</span></label>
+                                <input type="text" class="form-control ModifiedBy" id="ModifiedBy1" name="ModifiedBy1" placeholder="Modified By" maxlength="6" autocomplete="off" required>
+
+                            </div>
+                        </div>
+
+                    </div>
+                    
+
+                </div>
+            </div>
+            <div class="row  col-md-6">
+               
+                <div class="col-md-4">
+                    <button type="button" class="btn-wraper btn-red btn-outline" onclick="bill.Update();">Edit Item</button>
+                   
+                </div>
+                <div class="col-md-4">
+                    <button type="button" class="btn-wraper btn-red btn-outline" onclick="bill.Delete();">Delete Item From List</button>
+
+                </div>
+                <div class="col-md-4">
+                    <button type="button" class="btn-wraper btn-red btn-outline" onclick="bill.ShowPage(4);">Back</button>
+
+                </div>
+            </div>
+        </form>
+        <form id="frmBillEntryDelete" style="display:none;">
+            <div class="my_card">
+                <div class="form-body p-20">
+                    <div class="row p-t-20">
+
+
+
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Item_Name <span style="color:red">*</span></label>
+                                <select class="select2 State" style="width:100%" name="Itemname2" required id="Itemname2">
+                                    <option value="0">-- Select item--</option>
+                                </select>
+                                <label id="Itemname2-error" class="error error-msg hide" for="Itemname2"></label>
+                            </div>
+                        </div>
+
+                       
+
+
+
+                    </div>
+
+
+                </div>
+            </div>
+            <div class="row  col-md-6">
+
+                
+                <div class="col-md-4">
+                    <button type="button" class="btn-wraper btn-red btn-outline" onclick="bill.Delete();">Delete Item From List</button>
+
+                </div>
+                <div class="col-md-4">
+                    <button type="button" class="btn-wraper btn-red btn-outline" onclick="bill.ShowPage(4);">Back</button>
+
+                </div>
+            </div>
+        </form>
+        <div class="row  col-md-6">
+            <div class="col-md-4">
+                <button type="button" class="btn-wraper btn-red btn-outline" id="Billing" value="1" onclick="bill.ShowPage(value);">Add New Item</button>
+               
+
+            </div>
+
+            <div class="col-md-4">
+                <button type="button" class="btn-wraper btn-red btn-outline" id="Remove" value="2" onclick="bill.ShowPage(value);"> Edit/Delete Item</button>
+               
+
+            </div>
+            @* <div class="col-md-4">
+                <button type="button" class="btn-wraper btn-red btn-outline" id="Delete" value="3" onclick="bill.ShowPage(value);">Delete Item</button>
+
+            </div> *@
+        </div>
+    </div>
+</div>
+@section Scripts{
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="~/app/app.js" asp-append-version="true"></script>
+    <script src="~/js/jquery.min.js"></script>
+    <script src="~/lib/jquery/jquery.js"></script>
+    <script src="~/app/billcontroller.js" asp-append-version="true"></script>
+    <script src="~/app/billvalidation.js" asp-append-version="true"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+    
+    <script src="~/app/services/httpservice.js"asp-append-version="true"></script>
+}
