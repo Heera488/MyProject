@@ -1,0 +1,71 @@
+CREATE OR REPLACE Procedure Item_heera(InstrM in varchar2,
+  msg out varchar2)
+
+is
+  WholeDtl array;
+
+
+begin
+  -- Master array
+  WholeDtl := splitstr(InstrM, '÷');
+
+
+
+if WholeDtl(1)=1 then
+
+Insert into ASS_ITEM_MASTER
+  (id,
+  code,
+  quantity,
+  price,
+  createdby,
+  createdon,
+  modifiedby,
+  modifiedon,
+  NAME,
+  status)
+  values
+(
+     WholeDtl(2),
+     WholeDtl(3),
+     WholeDtl(4),
+     WholeDtl(5),
+     WholeDtl(6),
+
+     sysdate,
+     WholeDtl(7),
+
+     sysdate,
+     WholeDtl(8),
+     1
+     );
+
+      commit;
+  msg := 'Success^';
+  elsif WholeDtl(1)=2 then
+
+
+    update ASS_ITEM_MASTER
+     f set f.id = WholeDtl(2),f.code = WholeDtl(3),f.quantity=WholeDtl(4),
+     f.price=WholeDtl(5),f.createdby= WholeDtl(6),f.createdon=sysdate,
+     f.modifiedby= WholeDtl(7),f.modifiedon=sysdate,f.NAME= WholeDtl(8) where f.code = WholeDtl(3) ;
+     commit;
+      msg := 'Success^';
+  elsif WholeDtl(1)=3 then
+
+     delete from ASS_ITEM_MASTER t where t.id=WholeDtl(2);
+
+
+
+
+  commit;
+  msg := 'Success^';
+end if;
+exception
+  when others then
+
+    msg := SUBSTR(SQLERRM, 1, 150) || '- Error Code :-' || SQLCODE ||
+           'ERROR_BACKTRACE: ' || DBMS_UTILITY.FORMAT_ERROR_BACKTRACE;
+    rollback;
+
+end;
